@@ -8,7 +8,7 @@ async function createProduct(req,res){
             description:req.body.description,
             category:req.body.category,
             inStock:req.body.inStock,
-            imagePath:req.file.path
+            imagePath:req.file?.path // when image is not upload then it will return undefined and without image it will work
         });
        
        return res.status(201).json({

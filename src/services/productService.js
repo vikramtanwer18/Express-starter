@@ -12,7 +12,7 @@ const productRegister = async(productDetails)=>{
             const result = await cloudinary.uploader.upload(imagePath)
             var image_url = result.secure_url;
            // this is method for remove the upload images on the server
-             fs.unlink(req.file.path) 
+             fs.unlink(process.cwd()+"/"+ imagePath) 
            }catch(err){
             console.log("err while uplodaing the file on cloudinary",err)
            }
