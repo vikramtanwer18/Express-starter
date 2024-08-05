@@ -1,7 +1,7 @@
 
 const cloudinary = require('../config/cloudnaryConfig')
 const fs = require('fs/promises');
-const {createProduct} = require('../repositories/productRepo')
+const {createProduct,getProductById,deleteProductById} = require('../repositories/productRepo')
 
 const productRegister = async(productDetails)=>{
    // first we check the image in available or not
@@ -32,6 +32,31 @@ const productRegister = async(productDetails)=>{
 }
 
 
+
+async function handleGetProduct(productId){
+
+       const product = await getProductById({_id:productId})
+       if(!product){
+        throw{reason:"Something went wrong product can not found ",statusCode:500}
+       }
+
+       return product;
+}
+
+
+async function handleDeleteProduct(productId){
+
+  const product = await deleteProductById({_id:productId})
+  console.log("deleted product",product)
+  if(!product){
+   throw{reason:"Something went wrong product can not found ",statusCode:404}
+  }
+
+  return product;
+}
+
 module.exports = {
-    productRegister
+    productRegister,
+    handleGetProduct,
+    handleDeleteProduct
 }

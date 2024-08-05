@@ -51,8 +51,11 @@ app.post('/photo',uploder.single('firstFile'),async(req,res)=>{
 app.use('/user',userRouter)
 app.use('/login',authRouter)
 app.use('/cart',cartRouter)
-
 app.use('/register',productRouter)
+// get the product
+app.use('/product',productRouter)
+// delete the product
+app.use('/product',productRouter)
 
 app.listen(serverConfig.PORT,async()=>{
    await connectDB()

@@ -11,7 +11,33 @@ async function createProduct(productDetails){
 
 }
 
+async function getProductById(productId){
+
+    try {
+        const result = await product.findById(productId)
+        return result;
+    } catch (error) {
+        console.log("product not found ",error) 
+    }
+
+}
+
+
+
+async function deleteProductById(productId){
+
+    try {
+        const result = await product.findByIdAndDelete(productId)
+        return result;
+    } catch (error) {
+        console.log("product not found ",error) 
+    }
+
+}
+
 module.exports = {
-    createProduct
+    createProduct,
+    getProductById,
+    deleteProductById
 }
 
