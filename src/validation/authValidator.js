@@ -1,0 +1,43 @@
+const jwt = require("jsonwebtoken");
+const { SECRET_KEY } = require("../config/serverConfig");
+
+function isLoggedIn(req,res,next){
+
+    // first we access the token with the help of req.cookies
+    const token = req.cookies['authToken'];
+    console.log("req cookies",token)
+    // if token not found then send the res with unauthorized
+    if(!token){
+        res.status(401).json({
+            success:false,
+            error:"unauthorized token",
+            data:{},
+            message:"user token not found"
+        })
+    }
+    //if token found then we verify the token with jwt verify method
+      const decode = jwt.verify(token,SECRET_KEY)
+    // if token not matched the user is unauthorized
+     if(!decode){
+        res.status(401).json({
+            success:false,
+            error:"unauthorized token",
+            data:{},
+            message:"Invalid token found"
+        })
+     }
+    // if token match 
+     req.user ={
+        email:decode.email,
+        id:decode.id
+     } 
+
+     next()
+
+
+}
+
+module.exports ={
+
+    isLoggedIn
+}
