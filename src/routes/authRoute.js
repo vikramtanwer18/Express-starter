@@ -5,6 +5,4 @@ const authRouter = express.Router();
 
 authRouter.post('/',loginUser)
 
-
-
 module.exports = authRouter;

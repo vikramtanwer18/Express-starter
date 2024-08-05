@@ -35,11 +35,13 @@ const userSchema = new mongoose.Schema({
         required:true,
         trim:true,
         maxlength:[10,'max length of password should be eqal to or less than 10'],
+    },
+    role:{
+        type:String,
+        enum:['USER',"ADMIN"],
+        default:"USER"
     }
 },{timestamps:true});
-
-
-
 
 userSchema.pre('save', async function() {
   const hasedPassword = await bcrypt.hash(this.password,10)

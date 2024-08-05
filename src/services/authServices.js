@@ -19,8 +19,9 @@ async function userLoginHandle(authDetails){
         throw{message:'User password do not match please try again',statusCode:404}
      }
     // if password match then create the token
-
-    const token = jwt.sign({email:user.email,id:user._id},SECRET_KEY,{expiresIn:"1h"})
+    const userRole = user.role?user.role:"USER"
+    console.log("user role",userRole)
+    const token = jwt.sign({email:user.email,id:user._id,role:userRole},SECRET_KEY,{expiresIn:"1h"})
     // token pass to the client
     return token;
 }

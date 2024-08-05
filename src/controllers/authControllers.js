@@ -5,8 +5,8 @@ async function loginUser (req,res){
 
 try {
     const loginPayload = req.body;
-    const response = await userLoginHandle(loginPayload );
-   res.cookie("authToken",response,{
+    const response = await userLoginHandle(loginPayload);
+    res.cookie("authToken",response,{
     secure:false,
     httpOnly:true,
     maxAge:7*24*60*60*1000
@@ -26,8 +26,6 @@ try {
     })
 }
 }
-
-
 module.exports={
     loginUser
 };

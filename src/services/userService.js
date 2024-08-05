@@ -1,4 +1,4 @@
-const {findUser,createUser} = require('../repositories/userRepo')
+const {findUser,createUser,createCart} = require('../repositories/userRepo')
     async function userRegister(userDetails){
         // it will create brand new user
         // we check the user with email and mobilenumber exist or not
@@ -27,7 +27,10 @@ const {findUser,createUser} = require('../repositories/userRepo')
             throw{reason:"Somethins went wrong user cannot create",stausCode:500}
               }
             // if user created return newuser
+
               return newUser
+
+
     }
     
 
