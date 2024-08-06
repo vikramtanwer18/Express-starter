@@ -17,7 +17,7 @@ async function isLoggedIn(req,res,next){
     //if token found then we verify the token with jwt verify method
     try {
         const decode = jwt.verify(token,SECRET_KEY);
-        console.log(decode)
+        // console.log(decode)
         if(!decode) {
             console.log("can not decode");
         }
