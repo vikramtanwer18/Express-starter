@@ -26,6 +26,12 @@ const productSchema = new mongoose.Schema({
         enum:['veg','non-veg','drinks','snacks'],
         default:'veg',
     },
+    quantity:{
+        type:Number,
+        default:10,
+        required:[true,'Product quantity must be specify']
+
+    },
     inStock:{
         type:Boolean,
         required:[true,'in stock must be provided'],

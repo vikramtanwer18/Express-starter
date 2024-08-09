@@ -20,7 +20,8 @@ const {createCart} = require('../repositories/cartRepo')
             mobileNumber:userDetails.mobileNumber,
             firstName:userDetails.firstName,
             lastName:userDetails.lastName,
-            password:userDetails.password
+            password:userDetails.password,
+            role:userDetails.role
            })
       
          // if newuser not create

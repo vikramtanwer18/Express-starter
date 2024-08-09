@@ -1,5 +1,6 @@
 
 const cart = require('../schemas/cartSchema')
+
 async function createCart(userId){
     try {
         const result = await cart.create(userId);
@@ -12,14 +13,33 @@ async function createCart(userId){
 
 async function getCartById(userId){  
     try {
-        const result = await cart.findOne(userId);   
+        const result = await cart.findOne({user:userId}).populate('items.product');
+       
         return result;
     } catch (error) {
         console.log("error while fetching the cart",error)
     }
 }
 
+
+async function clearCartById(userId){
+    try{     
+    const result = await cart.findOne({...userId})
+    console.log(result)
+    if(!result){
+     console.log("error while clear the cart",error)
+    }
+    result.items = [];
+    result.save()
+    return result;
+} catch (error) {
+    console.log("error while clear the cart",error)
+}
+  
+}
+
 module.exports ={
     createCart,
-    getCartById
+    getCartById,
+    clearCartById
 }
