@@ -32,6 +32,12 @@ const orderSchema = new mongoose.Schema({
     },
     totalPrice:{
         type:Number,
+    },
+
+    paymentMethod:{
+        type:String,
+        default:"CASH",
+        enum:['ONLINE','CASH']
     }
 
 

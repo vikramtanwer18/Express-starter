@@ -14,6 +14,7 @@ const cloudinary = require('./config/cloudnaryConfig')
 const fs = require('fs/promises');
 const path = require("path");
 const productRouter = require("./routes/productRoute");
+const orderRouter = require("./routes/orderRoute");
 // console.log("this is cloudinary",cloudinary)
 const app = express()
 // use for the parsing the data/ req body 
@@ -54,8 +55,8 @@ app.use('/cart',cartRouter)
 app.use('/register',productRouter)
 // get the product
 app.use('/product',productRouter)
-// delete the product
-app.use('/product',productRouter)
+// create the order
+app.use('/orders',orderRouter)
 
 app.listen(serverConfig.PORT,async()=>{
    await connectDB()

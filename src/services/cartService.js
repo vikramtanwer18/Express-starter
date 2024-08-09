@@ -3,8 +3,8 @@ const { handleGetProduct } = require("./productService");
 
 
 async function handleGetCart(userId){
-        const cart = await getCartById(userId)
-        
+    
+        const cart = await getCartById(userId) 
         if(!cart){
             throw{reason:"Something went wrong cart can not found ",statusCode:500}
         }
