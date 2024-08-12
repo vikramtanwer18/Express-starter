@@ -6,7 +6,7 @@ const { isLoggedIn, isAdmin } = require("../validation/authValidator");
 
 const productRouter = express.Router();
 
-productRouter.post('/product', isLoggedIn,isAdmin,
+productRouter.post('/product',isLoggedIn,isAdmin,
     uploder.single('imgFile'), createProduct)
 
 productRouter.get('/:id',getProduct)

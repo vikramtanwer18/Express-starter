@@ -1,4 +1,4 @@
-const {createOrder} = require('../repositories/orderRepo');
+const {createOrder, getAllOrdersByUserId, getOrderByOderId,updateOrderStatusByOrderId} = require('../repositories/orderRepo');
 
 const {getCartById,clearCartById} = require('../repositories/cartRepo')
 
@@ -56,7 +56,51 @@ async function handleCreateOrder(userId,paymentMethod){
 }
 
 
+async function handleAllGetOrdersByUserId(userId){
+
+    const order = await getAllOrdersByUserId({user:userId})
+
+    if(!order){
+    throw{reason:'something went wrong order can not creating',statusCode:500};
+
+    }
+    return order;
+}
+
+
+
+
+async function handleGetOrderByOrderId(orderId){
+
+    const order = await getOrderByOderId({_id:orderId})
+
+    if(!order){
+    throw{reason:'something went wrong order can not creating',statusCode:500};
+
+    }
+    return order;
+}
+
+
+
+
+async function handleUpdateStatus(orderId,status){
+
+    console.log("order and status in service",orderId,status)
+
+    const order = await updateOrderStatusByOrderId(orderId,status)
+
+    if(!order){
+    throw{reason:'something went wrong order can not creating',statusCode:500};
+
+    }
+    return order;
+}
+
 
 module.exports = {
-    handleCreateOrder
+    handleCreateOrder,
+    handleUpdateStatus,
+    handleGetOrderByOrderId,
+    handleAllGetOrdersByUserId 
 }

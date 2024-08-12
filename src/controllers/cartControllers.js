@@ -26,6 +26,7 @@ async function getCart(req,res){
 
 async function modifyToCart(req,res){
     try {
+        console.log(req.params.operation)
        const userId = req.user.id;
        console.log('userid',userId)
        const response = await handleModifyToCart(userId,req.params.productId,req.params.operation == 'add')

@@ -4,13 +4,13 @@ const orderSchema = new mongoose.Schema({
     user:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
-        ref:'user'
+        ref:'User'
     },
     items:[
         {
             product:{
                 type:mongoose.Schema.Types.ObjectId,
-                ref:'product',
+                ref:'Product',
                 required:true
             },
             quantity:{
@@ -28,7 +28,7 @@ const orderSchema = new mongoose.Schema({
     status:{
         type:String,
         default:"ORDERED",
-        enum:['ORDERED','PROCESSING','DELIVERED','OUT-OF-DELIVERED']
+        enum:['ORDERED','PROCESSING','DELIVERED','OUT-OF-DELIVERED','CANCLED']
     },
     totalPrice:{
         type:Number,

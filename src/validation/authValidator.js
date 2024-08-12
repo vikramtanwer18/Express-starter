@@ -38,17 +38,14 @@ async function isLoggedIn(req,res,next){
         })
     }
      
-    // if token match 
-    
-
-  
+    // if token match   
 
 }
 
 function isAdmin(req,res,next){
   const loggedInUserRole = req.user.role;
   console.log('login user role',loggedInUserRole)
-  if(loggedInUserRole==="ADMIN"){
+  if(loggedInUserRole == "ADMIN"){
     next()
   }else{
     res.status(401).json({
@@ -61,6 +58,7 @@ function isAdmin(req,res,next){
         }
     })
   }
+
 }
 
 module.exports ={

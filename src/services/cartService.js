@@ -19,7 +19,8 @@ async function handleModifyToCart(userId,productId ,shouldAdd){
     const quantityValue = shouldAdd ? 1 : -1;
     const cart = await handleGetCart(userId);
     const product = await handleGetProduct(productId)
-   
+    console.log('product id',productId)
+    console.log('there is product',product)
     if(!product){
         throw{reason:"Something went wrong product can not found ",statusCode:500}
     }
@@ -29,10 +30,12 @@ async function handleModifyToCart(userId,productId ,shouldAdd){
     }
 
    if(cart.items.length > 0){
+    console.log('there is cart',cart)
+    console.log('there is cart',cart.items.length)
     cart.items.forEach((item)=>{
         if(item.product._id == productId){
           if(shouldAdd){
-                if(item.quantity <= product.quantity){
+                if(item.quantity  <= product.quantity){
                     item.quantity +=quantityValue;
                    
                 }else{
@@ -40,9 +43,9 @@ async function handleModifyToCart(userId,productId ,shouldAdd){
                 }
         }else{
             if(item.quantity > 0){
-                item.quantity +=quantityValue;
+                item.quantity += quantityValue;
             }else{
-                if( item.quantity== 0){
+                if( item.quantity == 0){
                     cart.items = cart.items.filter((item)=>item.product._id != productId)
                        console.log('cart items',cart.items)
                        return ;
@@ -55,10 +58,10 @@ async function handleModifyToCart(userId,productId ,shouldAdd){
     })
    } else{
     if(quantityValue){
+        console.log('there is cart an else',cart)
     cart.items.push({
      product:productId,
      quantity :1
-     
         })
     }
   
@@ -69,7 +72,7 @@ async function handleModifyToCart(userId,productId ,shouldAdd){
 //   product.quantity -=1;
 
 //   product.save();
-
+console.log('cart is',cart)
   return cart
     
 }
