@@ -25,7 +25,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(cookieParser())
 
 // this is used for cheking the cookie req
-app.get('/ping', isLoggedIn ,(req,res)=>{
+app.get('/ping',(req,res)=>{
     console.log("req user",req.user)
     res.send({message:"Happppyyyy"})
 })
