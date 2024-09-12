@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors')
 //  importing the serverconfig file for port no
 const serverConfig = require("./config/serverConfig")
 //  importing the database file for mongoDB connection 
@@ -15,6 +16,7 @@ const fs = require('fs/promises');
 const path = require("path");
 const productRouter = require("./routes/productRoute");
 const orderRouter = require("./routes/orderRoute");
+
 // console.log("this is cloudinary",cloudinary)
 const app = express()
 // use for the parsing the data/ req body 
@@ -24,6 +26,10 @@ app.use(express.urlencoded({extended:true}))
 // cookieparser are used for to bring the token from header automatically
 app.use(cookieParser())
 
+app.use(cors({
+    credentials:true,
+    origin:'http://localhost:5173'
+}))
 // this is used for cheking the cookie req
 app.get('/ping',(req,res)=>{
     console.log("req user",req.user)
@@ -51,10 +57,12 @@ app.post('/photo',uploder.single('firstFile'),async(req,res)=>{
 // we will define the global routes middleware
 app.use('/user',userRouter)
 app.use('/login',authRouter)
+app.use('/auth',authRouter)
 app.use('/cart',cartRouter)
 app.use('/register',productRouter)
 // get the product
 app.use('/product',productRouter)
+app.use('/products',productRouter)
 // create the order
 app.use('/orders',orderRouter)
 

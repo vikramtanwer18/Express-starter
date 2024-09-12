@@ -1,12 +1,25 @@
 
 const {userLoginHandle} =require('../services/authServices')
 
-async function loginUser (req,res){
+function logoutUser(req,res){
+    res.cookie("authToken",'',{
+        secure:false,
+        httpOnly:true,
+        maxAge:7*24*60*60*1000
+    })
+    return res.status(200).json({
+        message:'successfully logout the user',
+        success:true,
+        data:{},
+        error:{}
+    })
+}
 
+async function loginUser (req,res){
 try {
     const loginPayload = req.body;
     const response = await userLoginHandle(loginPayload);
-    res.cookie("authToken",response,{
+    res.cookie("authToken",response.token,{
     secure:false,
     httpOnly:true,
     maxAge:7*24*60*60*1000
@@ -14,7 +27,7 @@ try {
     return res.status(200).json({
         message:'successfully login the user',
         success:true,
-        data:{},
+        data:{role:response.userRole,userData:response.userData},
         error:{}
     })
 } catch (error) {
@@ -27,5 +40,6 @@ try {
 }
 }
 module.exports={
-    loginUser
+    loginUser,
+    logoutUser
 };

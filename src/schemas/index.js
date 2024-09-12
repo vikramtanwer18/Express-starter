@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema({
     },
     lastName:{
         type:String,
-        required:[true,"user firstName should be provided"],
         maxlength:[10,'max length of character should be eqal to or less than 10'],
         lowercase: true,
         trim:true

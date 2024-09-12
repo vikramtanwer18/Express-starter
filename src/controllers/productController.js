@@ -1,5 +1,5 @@
 
-const { productRegister ,handleGetProduct, handleDeleteProduct} = require('../services/productService');
+const { productRegister ,handleGetProduct, handleDeleteProduct, handleGetAllProducts} = require('../services/productService');
 async function createProduct(req,res){
     try {
         const response = await productRegister({
@@ -55,6 +55,29 @@ async function getProduct(req,res){
 }
 
 
+async function getAllProducts(req,res){
+
+    try {
+        const response = await handleGetAllProducts()
+        res.status(200).json({
+            message:'product are found',
+            success:true,
+            error:{},
+            data:response,
+    
+        })
+    } catch (error) {
+        res.status(500).json({
+            message:'product are not found',
+            success:false,
+            error:error,
+            data:{}
+    
+        })
+    }
+
+}
+
 async function deleteProduct(req,res){
 
     try {
@@ -84,5 +107,6 @@ async function deleteProduct(req,res){
 module.exports = {
     createProduct,
     getProduct,
-    deleteProduct
+    deleteProduct,
+    getAllProducts
 }

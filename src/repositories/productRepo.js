@@ -22,6 +22,17 @@ async function getProductById(productId){
 
 }
 
+async function getAllProducts(){
+
+    try {
+        const result = await product.find()
+        return result;
+    } catch (error) {
+        console.log("product not found ",error) 
+    }
+
+}
+
 
 
 async function deleteProductById(productId){
@@ -38,6 +49,7 @@ async function deleteProductById(productId){
 module.exports = {
     createProduct,
     getProductById,
-    deleteProductById
+    deleteProductById,
+    getAllProducts
 }
 
