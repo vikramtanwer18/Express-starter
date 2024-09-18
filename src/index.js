@@ -28,7 +28,7 @@ app.use(cookieParser())
 
 app.use(cors({
     credentials:true,
-    origin:'http://localhost:5173'
+    origin:'https://unlimited-pizza.netlify.app'
 }))
 // this is used for cheking the cookie req
 app.get('/ping',(req,res)=>{
