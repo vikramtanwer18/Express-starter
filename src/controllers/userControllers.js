@@ -2,7 +2,7 @@
 const {userRegister} = require("../services/userService")
 
 async function createUser(req,res){
-
+ console.log('user',req.body)
     try {
         const response = await userRegister(req.body)
         return res.status(200).json({

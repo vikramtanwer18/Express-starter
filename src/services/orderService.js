@@ -5,7 +5,6 @@ const {getCartById,clearCartById} = require('../repositories/cartRepo')
 const {findUser} = require('../repositories/userRepo')
 
 
-
 async function handleCreateOrder(userId,paymentMethod){
   
     const cart = await getCartById(userId)

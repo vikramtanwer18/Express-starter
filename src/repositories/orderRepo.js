@@ -11,7 +11,6 @@ async function createOrder(orderDetails){
     
 }
 
-
 async function getAllOrdersByUserId(userId){
     try{
     const result = order.find({...userId}).populate('items.product')
@@ -31,7 +30,6 @@ async function getOrderByOderId(orderId){
         console.log('error while fetching the order',error)
     }
 }
-
 
 async function updateOrderStatusByOrderId(orderId,status){
     console.log("oreder id and status",orderId,status)
